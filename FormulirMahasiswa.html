@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Input Data Mahasiswa</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    form, table {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .radio-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 5px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #eee;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Input Data Mahasiswa</h1>
+
+  <form id="formMahasiswa">
+    <label>Nim:
+      <input type="text" nim="nim" required>
+    </label>
+    <label>Nama:
+      <input type="text" name="nama" required>
+    </label>
+
+    <label>Gender:</label>
+    <div class="radio-group">
+      <label><input type="radio" name="gender" value="Laki-laki" required> Laki-laki</label>
+      <label><input type="radio" name="gender" value="Perempuan"> Perempuan</label>
+    </div>
+
+    <label>Tempat Lahir:
+      <select name="tempatLahir" required>
+        <option value="">-- Pilih Kota --</option>
+        <option value="Denpasar">Denpasar</option>
+        <option value="Atambua">Atambua</option>
+        <option value="Jakarta">Jakarta</option>
+        <option value="Bandung">Bandung</option>
+      </select>
+    </label>
+
+    <label>Tanggal Lahir:
+      <input type="date" name="tanggalLahir" required>
+    </label>
+
+    <label>Alamat:
+      <textarea name="alamat" rows="3" required></textarea>
+    </label>
+
+    <label>No. HP:
+      <input type="text" name="noHP" required>
+    </label>
+
+    <label>Email:
+      <input type="email" name="email" required>
+    </label>
+
+    <label>Hobi:
+      <select name="hobi" required>
+        <option value="">-- Pilih Hobi --</option>
+        <option value="Membaca">Membaca</option>
+        <option value="Menulis">Menulis</option>
+        <option value="Olahraga">Olahraga</option> 
+        <option value="Musik">Musik</option>
+      </select>
+    </label>
+
+    <br><br>
+    <button type="submit">Simpan</button>
+  </form>
+
+  <table id="tabelMahasiswa">
+    <thead>
+      <tr>
+        <th>Nim</th>
+        <th>Nama</th>
+        <th>Gender</th>
+        <th>Tempat Lahir</th>
+        <th>Tanggal Lahir</th>
+        <th>Alamat</th>
+        <th>No. HP</th>
+        <th>Email</th>
+        <th>Hobi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Data akan ditambahkan di sini -->
+    </tbody>
+  </table>
+
+  <script>
+    const form = document.getElementById('formMahasiswa');
+    const tabel = document.getElementById('tabelMahasiswa').getElementsByTagName('tbody')[0];
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const data = new FormData(form);
+      const row = tabel.insertRow();
+
+      row.insertCell().textContent = data.get('nim');
+      row.insertCell().textContent = data.get('nama');
+      row.insertCell().textContent = data.get('gender');
+      row.insertCell().textContent = data.get('tempatLahir');
+      row.insertCell().textContent = data.get('tanggalLahir');
+      row.insertCell().textContent = data.get('alamat');
+      row.insertCell().textContent = data.get('noHP');
+      row.insertCell().textContent = data.get('email');
+      row.insertCell().textContent = data.get('hobi');
+
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
